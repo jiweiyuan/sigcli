@@ -17,6 +17,11 @@ export function resolveFrom(credential: Credential, fromPath: string): string | 
         return null;
     }
 
+    if (rest === 'bearerHeader') {
+        if (credential.type === 'bearer') return `Bearer ${credential.accessToken}`;
+        return null;
+    }
+
     if (rest === 'key') {
         if (credential.type === 'api-key') return credential.key;
         return null;
